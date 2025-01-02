@@ -9,6 +9,7 @@ import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Scanner
+import kotlin.text.replace
 
 class FetchFact(val textView: TextView, val progressBar: ProgressBar,) : AsyncTask<String, Void, String>() {
     override fun doInBackground(vararg p0: String?): String? {
@@ -32,8 +33,10 @@ class FetchFact(val textView: TextView, val progressBar: ProgressBar,) : AsyncTa
         textView.text = result
         val jsonObject = JSONObject(result)
         val fact = jsonObject.getString("value")
-        textView.text = fact
+        val facttoid = fact.replace("Chuck Norris", "Sujesh")
+        textView.text = facttoid
         progressBar.visibility = ProgressBar.INVISIBLE
         Log.d("vijayloging", "$fact")
     }
+
 }
